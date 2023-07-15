@@ -47,3 +47,39 @@ async function Page2({ params }) {
 
     return <h1>{data.title}</h1>;
 }
+
+
+// СПОСОБЫ УПРАВЛЕНИЯ МЕТАДАННЫМИ - Статический и динамический
+
+// Чтобы изменить метаданные статическим способом 
+
+export const metadata = {
+    title: 'Home'
+}
+//Output:
+// <head>
+// <title>Home</title>
+//</head>
+
+export default function Page(){
+    return(
+        <div>Static Metadata</div>
+    )
+}
+// Чтобы изменить метаданные ДДинамическим способом 
+
+export async function generateMetadata({params, searchParams}) {
+    const product = await getProduct(params.id)
+    
+    return {title:product.title}
+}
+//Output:
+// <head>
+// <title>My Unique Product</title>
+//</head>
+
+export default function Page(){
+    return(
+        <div>Static Metadata</div>
+    )
+}
